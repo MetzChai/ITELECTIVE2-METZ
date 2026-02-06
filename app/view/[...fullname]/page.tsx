@@ -2,21 +2,21 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Suspense } from 'react';
 
-export default async function ProfilePage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
+export default async function ProfilePage({ params }: { params: Promise<{ fullname: string[] }> }) {
+  const { fullname } = await params;
 
   // As if Database Response
   const userDb = [
     {
-      id: "jameboy",
-      name: "Jameboy Escartin",
+      id: "metz",
+      name: "Metz Silvoza Tura",
       section: "BSIT - 3A",
-      email: "escartinjameboy@gmail.com",
-      hobbies: ["Chess", "Guitar", "Hobby 3"]
+      email: "metzsilvoza@gmail.com",
+      hobbies: ["Watching", "Reading Online Stories", "Eating"]
     }
   ]
 
-  for (const currentSlug of slug) {
+  for (const currentSlug of fullname) {
     if (currentSlug === "hobbies") {
       return (
         <div className="border p-4 mb-4 rounded-md">
@@ -32,7 +32,7 @@ export default async function ProfilePage({ params }: { params: Promise<{ slug: 
   }
 
   // Validation
-  const checkValidUser: Boolean = userDb[0].id === slug[0];
+  const checkValidUser: boolean = userDb[0].id === fullname[0];
   console.log(checkValidUser)
   // If not Valid User
   if (!checkValidUser) {
@@ -51,7 +51,7 @@ export default async function ProfilePage({ params }: { params: Promise<{ slug: 
           <h1>{userDb[0].name}</h1>
           <h2>{userDb[0].section}</h2>
           <p className='mb-4'>Email: {userDb[0].email}</p>
-          <Link href="./jameboy/hobbies">
+          <Link href="./metz/hobbies">
             <Button>View Hobbies</Button>
           </Link>
         </div>
